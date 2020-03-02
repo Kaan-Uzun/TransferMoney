@@ -3,12 +3,15 @@ package com.transfermoney.project.TransferMoney.Business;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.transfermoney.project.TransferMoney.Core.Utilities.Results.*;
 import com.transfermoney.project.TransferMoney.DataAccess.IAccountDal;
 import com.transfermoney.project.TransferMoney.Entities.Account;
 
+
+@Service
 public class AccountManager implements IAccountService {
 	
 	private IAccountDal accountDal;
