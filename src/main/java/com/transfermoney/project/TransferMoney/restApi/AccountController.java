@@ -81,4 +81,15 @@ public class AccountController {
 		}
 		return new ResponseEntity<>(result.Message, HttpStatus.BAD_REQUEST);
 	}
+	
+	@PostMapping("/TransferMoney")
+	public ResponseEntity<?> TransferMoney(@RequestBody MoneyTransferDTO moneyTransferDto){
+		
+		Result result = accountService.TransferMoney(moneyTransferDto);
+		
+		if (result.Success) {
+			return new ResponseEntity<>(result.Message, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(result.Message, HttpStatus.BAD_REQUEST);
+	}
 }
