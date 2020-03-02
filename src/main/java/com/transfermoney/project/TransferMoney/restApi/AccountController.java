@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.transfermoney.project.TransferMoney.Business.IAccountService;
 import com.transfermoney.project.TransferMoney.Core.Utilities.Results.*;
 import com.transfermoney.project.TransferMoney.Entities.Account;
+import com.transfermoney.project.TransferMoney.Entities.MoneyTransferDTO;
 
 @RestController
 @RequestMapping("/api")
