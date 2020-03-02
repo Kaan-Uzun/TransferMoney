@@ -4,9 +4,9 @@ import javax.persistence.*;
 
 import com.transfermoney.project.TransferMoney.Core.Utilities.Entities.IEntity;
 
-@Entity
-@Table(name="account")
-public class Account {
+@Entity //Using entity annotations
+@Table(name="account") //Table name of in database
+public class Account implements IEntity {
 	@Id
 	@Column(name="ID")
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -20,6 +20,7 @@ public class Account {
 	@Column(name="treasury")
 	private boolean treasury;
 	
+	// a constructor to create a new account
 	public Account(int id, String name, String currency, double balance, boolean treasury) {
 		super();
 		this.id = id;
@@ -28,9 +29,12 @@ public class Account {
 		this.balance = balance;
 		this.treasury = treasury;
 	}
-
+	
+	// an empty constructor to create a empty account
 	public Account() {}
 	
+	
+	//Getter and Setters
 	public int getId() {
 		return id;
 	}
