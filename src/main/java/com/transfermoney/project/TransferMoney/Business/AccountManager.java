@@ -30,11 +30,14 @@ public class AccountManager implements IAccountService {
 		this.accountDal = accountDal;
 	}
 
+	// List the Accounts Method
 	@Override
 	public DataResult<List<Account>> getAll() {
 		return new SuccessDataResult<List<Account>>(accountDal.getAll(), true);
 	}
 
+	
+	// to Add Method
 	@Override
 	@Transactional
 	public Result add(Account account) {
@@ -42,6 +45,7 @@ public class AccountManager implements IAccountService {
 		return new SuccessResult("Account is added.");
 	}
 
+	// to Update Method
 	@Override
 	@Transactional
 	public Result update(Account account) {
@@ -49,6 +53,7 @@ public class AccountManager implements IAccountService {
 		return new SuccessResult("Account is updated.");
 	}
 
+	// to Delete Method
 	@Override
 	@Transactional
 	public Result delete(Account account) {
@@ -56,6 +61,7 @@ public class AccountManager implements IAccountService {
 		return new SuccessResult("Account is deleted.");
 	}
 
+	// to Get Method from Account Id
 	@Override
 	@Transactional
 	public DataResult<Account> getById(int accountId) {
@@ -71,6 +77,7 @@ public class AccountManager implements IAccountService {
 				
 	}
 	
+	// a Method which is Transfer Money and be controlled is that Treasury or Not
 	@Override
 	@Transactional
 	public Result TransferMoney(MoneyTransferDTO moneyTransferDto) {		
@@ -100,16 +107,16 @@ public class AccountManager implements IAccountService {
 			return new ErrorResult("An Error : " + e.getMessage());
 		}		
 	}
-
+	
+	//GET Instantaneous Change of Currency from a Remote API
 	@Override
 	public double exchangeMoney(String baseCurrency, String exchangingCurrency, double money) throws JSONException, IOException {
 		String url_str = "https://api.exchangeratesapi.io/latest?base=" + exchangingCurrency;
 		JSONObject json = getRatesFromApi(url_str);
-		return money * (double)json.getJSONObject("rates").get(baseCurrency);
-		
-		
+		return money * (double)json.getJSONObject("rates").get(baseCurrency);		
 	}
-
+	
+	// to Parse Object from API and Return JSON Data
 	@Override
 	public JSONObject getRatesFromApi(String url) throws IOException, JSONException{
 		InputStream is = new URL(url).openStream();

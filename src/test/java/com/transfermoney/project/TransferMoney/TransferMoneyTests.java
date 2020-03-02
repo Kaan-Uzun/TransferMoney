@@ -28,12 +28,10 @@ class TransferMoneyTests {
 	@MockBean
 	private IAccountDal accountDal;
 	
-	
 	@Autowired
 	private IAccountService accountService;
 	
-	
-
+	// a JUnit test which controls to get all accounts with dummydata
 	@Test
 	public void getAccountTest() {		
 		when(accountDal.getAll()).thenReturn(Stream
@@ -42,6 +40,7 @@ class TransferMoneyTests {
 	}
 	
 	
+	// a JUnit test which controls to get a specific account
 	@Test
 	public void getSpecificAccountTest() {		
 		
@@ -51,6 +50,7 @@ class TransferMoneyTests {
 		assertEquals(testAcc, accountService.getById(testAcc.getId()).Data);
 	}
 	
+	// a JUnit test which controls TransferMoney method	
 	@Test
 	public void moneyTransferCheck() {		
 		MoneyTransferDTO moneyTransferDto = spy(new MoneyTransferDTO(1, 100000, 3));
@@ -58,6 +58,7 @@ class TransferMoneyTests {
 		assertEquals(result.Success, accountService.TransferMoney(moneyTransferDto).Success);
 	}
 	
+	// a JUnit test which controls exchangeMoney method
 	@Test
 	public void exchangedMethodCheck() throws JSONException, IOException {	
 		// It's available to check another currency as CAD, TRY, AUD etc...
